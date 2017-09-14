@@ -7,9 +7,11 @@ require('dotenv').load();
 
 var app = express()
 
-app.use("/", express.static(__dirname + '/public'))
+app.use("/public", express.static(process.cwd() + '/public'))
 
-var port = process.env.PORT || 5000
+routes(app)
+
+var port = process.env.PORT || 8080
 app.listen(port, ()=>{
   console.log("Server is now listening on port " + port)
 })
