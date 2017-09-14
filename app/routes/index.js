@@ -1,13 +1,21 @@
-module.exports = function(app) {
+module.exports = function(app, express) {
 
   var path = process.cwd()
 
-  app.route("/")
-    .get((req, res)=>{
-      res.sendFile(path + "/public/index.html")
-    })
-
-  app.route("*").get((req, res)=>{
-    res.redirect("/")
+  app.get("/lol", (req, res)=>{
+    res.send("lol")
+    res.end()
   })
+
+
+
+//serve react files
+app.use(express.static(path + '/client/build'))
+
+//catch all other responses
+app.get("*", (req, res)=>{
+  res.send("404 not found")
+})
+
+
 }
