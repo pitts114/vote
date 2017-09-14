@@ -8,8 +8,6 @@ require('dotenv').load();
 
 var app = express()
 
-//app.use("/public", express.static(path + '/public'))
-
 routes(app, express)
 
 

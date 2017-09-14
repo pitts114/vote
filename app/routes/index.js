@@ -12,6 +12,8 @@ module.exports = function(app, express) {
 //serve react files
 app.use(express.static(path + '/client/build'))
 
+app.use("/public", express.static(path + '/public'))
+
 //catch all other responses
 app.get("*", (req, res)=>{
   res.send("404 not found")
