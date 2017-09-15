@@ -7,12 +7,13 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        <div className="App-header">
-          <h1>VOTE</h1>
+        <div className="container">
+        <div className="jumbotron">
+          <h1>Vote</h1>
+          <p>A place to host polls and vote on them.</p>
+          <button className="btn btn-primary btn-lg">Login</button>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      </div>
       </div>
     );
   }
