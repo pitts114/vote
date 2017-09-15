@@ -27,6 +27,18 @@ function PollHandler() {
     })
   }
 
+  this.findAllPolls = function(res) {
+    Polls.find({})
+      .select("pollTitle choices -_id")
+      .exec((err, results)=>{
+        if (err){
+          console.log("Error finding all polls")
+          throw err
+        }
+        res.json(results)
+      })
+  }
+
 }
 
 module.exports = PollHandler

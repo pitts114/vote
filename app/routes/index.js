@@ -10,6 +10,11 @@ module.exports = function(app, express) {
       pollHandler.newPoll(res)
     })
 
+  app.route("/api/polls")
+    .get((req, res)=>{
+      pollHandler.findAllPolls(res)
+    })
+
 
 
 //serve react files
