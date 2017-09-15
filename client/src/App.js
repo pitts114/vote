@@ -8,12 +8,12 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
-        <div className="jumbotron">
-          <h1>Vote</h1>
+          <div className="jumbotron">
+          <h1><b>Vote</b></h1>
           <p>A place to host polls and vote on them.</p>
           <button className="btn btn-primary btn-lg">Login</button>
-        </div>
       </div>
+    </div>
       </div>
     );
   }
