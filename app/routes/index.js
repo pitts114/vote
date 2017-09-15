@@ -1,11 +1,14 @@
+var path = process.cwd()
+var PollHandler = require(path + "/app/controllers/pollHandler.server.js")
+
 module.exports = function(app, express) {
 
-  var path = process.cwd()
+  var pollHandler = new PollHandler()
 
-  app.get("/lol", (req, res)=>{
-    res.send("lol")
-    res.end()
-  })
+  app.route("/api/new")
+    .get((req, res)=>{
+      pollHandler.newPoll(res)
+    })
 
 
 
@@ -14,12 +17,5 @@ app.use(express.static(path + '/client/build'))
 
 app.use("/public/css", express.static(path + '/app/public/css'))
 app.use("/public/js",express.static(path + '/app/public/js'))
-
-//catch all other responses
-/*
-app.get("*", (req, res)=>{
-  res.send("404 not found")
-})
-*/
 
 }
