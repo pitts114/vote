@@ -6,8 +6,10 @@ module.exports = function(app, express) {
   var pollHandler = new PollHandler()
 
   app.route("/api/new")
-    .get((req, res)=>{
-      pollHandler.newPoll(res)
+    .post((req, res)=>{
+      var title = req.query.title
+      var choices = req.query.choices.replace(' ','').split(',')
+      pollHandler.newPoll(res, title, choices)
     })
 
   app.route("/api/polls")
