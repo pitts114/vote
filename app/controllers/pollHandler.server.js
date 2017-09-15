@@ -28,8 +28,7 @@ function PollHandler() {
   }
 
   this.findAllPolls = function(res) {
-    Polls.find({})
-      .select("pollTitle choices -_id")
+    Polls.find({},{'_id': false,"_v":false, "choices._id": false})
       .exec((err, results)=>{
         if (err){
           console.log("Error finding all polls")
