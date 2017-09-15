@@ -16,11 +16,6 @@ class Navbar extends Component {
             <a className="navbar-brand" href="https://www.google.com">Vote</a>
           </div>
           <div className="collapse navbar-collapse" id="myNavbar">
-            <ul className="nav navbar-nav">
-              <li className="active">
-                <a href="https://www.google.com">Home</a>
-              </li>
-            </ul>
             <ul className="nav navbar-nav navbar-right">
               <li>
                 <a href="https://www.google.com">Login</a>
