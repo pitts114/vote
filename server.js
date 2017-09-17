@@ -8,7 +8,7 @@ var path = process.cwd()
 require('dotenv').load();
 
 var app = express()
-//app.use(bodyParser.json())
+app.use(bodyParser.json())
 
 mongoose.connect(process.env.MONGO_URI)
 

@@ -9,7 +9,7 @@ module.exports = function(app, express) {
 app.route("/api/new")
   .post((req, res)=>{
     var title = req.body.title
-    var choices = req.body.choices.replace(' ','').split(',')
+    var choices = req.body.choices.replace(', ',',').split(',')
     pollHandler.newPoll(res, title, choices)
   })
 
@@ -20,6 +20,9 @@ app.route("/api/poll/:id")
   })
   .delete((req,res)=>{
     pollHandler.deletePoll(res, req.params.id)
+  })
+  .post((req,res)=>{
+    pollHandler.vote(res, req.params.id, req.body.choice)
   })
 
 app.get("/api/polls", (req,res)=>{

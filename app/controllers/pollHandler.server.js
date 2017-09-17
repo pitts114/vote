@@ -61,6 +61,19 @@ function PollHandler() {
     })
   }
 
+  this.vote = function(res, id, choice){
+    /*
+    var fieldStr = "choices." + choice
+    Polls.findOneAndUpdate({"_id":id, choices:choice}, {$inc: {fieldStr: 1}}).exec((err, results)=>{
+      res.send()
+      console.log(results)
+    })
+    */
+    Polls.findOneAndUpdate({"_id":id, "choices.choice":choice}, {$inc: {"choices.$.votes": 1}}, {new:true}).exec((err, results)=>{
+      res.json(results)
+    })
+  }
+
   this.deletePoll = function(res, id){
     Polls.remove({"_id":id}).exec((err, results)=>{
       if (results.result.n === 0){
