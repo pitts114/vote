@@ -5,6 +5,8 @@ module.exports = function(app, express) {
 
   var pollHandler = new PollHandler()
 
+/*
+
   app.route("/api/new")
     .post((req, res)=>{
       var title = req.query.title
@@ -16,7 +18,12 @@ module.exports = function(app, express) {
     .get((req, res)=>{
       pollHandler.findAllPolls(res)
     })
+*/
 
+app.route("/poll/:pollid")
+  .get((req,res)=>{
+
+  })
 
 
 //serve react files
