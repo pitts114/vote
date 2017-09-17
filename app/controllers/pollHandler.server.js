@@ -23,6 +23,7 @@ function PollHandler() {
       else {
         res.json({
           status: "200",
+          id: poll._id,
           title: title,
           choices: choices
         })
@@ -37,8 +38,38 @@ function PollHandler() {
           console.log("Error finding all polls")
           throw err
         }
-        res.json(results)
+        console.log(results)
+        if (results[0]){
+              res.json(results)
+        }
+        else{
+          res.json({"status":"There are no polls!"})
+        }
+
       })
+  }
+
+  this.findPoll = function(res, id){
+    Polls.findOne({"_id": id}).exec((err, results)=>{
+      if (err) throw err
+      if (results){
+        res.json(results)
+      }
+      else {
+        res.json({"status": "No poll found with that id"})
+      }
+    })
+  }
+
+  this.deletePoll = function(res, id){
+    Polls.remove({"_id":id}).exec((err, results)=>{
+      if (results.result.n === 0){
+        res.json({"status": "Poll does not exist: No poll was deleted."})
+      }
+      else {
+        res.json({"status": "Poll deleted."})
+      }
+    })
   }
 
 }

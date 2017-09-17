@@ -5,30 +5,31 @@ module.exports = function(app, express) {
 
   var pollHandler = new PollHandler()
 
-/*
-
-  app.route("/api/new")
-    .post((req, res)=>{
-      var title = req.query.title
-      var choices = req.query.choices.replace(' ','').split(',')
-      pollHandler.newPoll(res, title, choices)
-    })
-
-  app.route("/api/polls")
-    .get((req, res)=>{
-      pollHandler.findAllPolls(res)
-    })
-*/
-
-app.route("/poll/:pollid")
-  .get((req,res)=>{
-
+//API stuff
+app.route("/api/new")
+  .post((req, res)=>{
+    var title = req.body.title
+    var choices = req.body.choices.replace(' ','').split(',')
+    pollHandler.newPoll(res, title, choices)
   })
 
+app.route("/api/poll/:id")
+  .get((req, res)=>{
+    console.log("Getting a poll")
+    pollHandler.findPoll(res, req.params.id)
+  })
+  .delete((req,res)=>{
+    pollHandler.deletePoll(res, req.params.id)
+  })
+
+app.get("/api/polls", (req,res)=>{
+  pollHandler.findAllPolls(res)
+})
 
 //serve react files
 app.use(express.static(path + '/client/build'))
 
+app.use("/public", express.static(path + "/app/public"))
 app.use("/public/css", express.static(path + '/app/public/css'))
 app.use("/public/js",express.static(path + '/app/public/js'))
 
