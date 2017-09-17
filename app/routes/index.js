@@ -32,7 +32,7 @@ app.get("/api/polls", (req,res)=>{
 //serve react files
 app.use(express.static(path + '/client/build'))
 
-app.use("/public", express.static(path + "/app/public"))
+app.use("/api.html", express.static(path + "/app/public/api.html"))
 app.use("/public/css", express.static(path + '/app/public/css'))
 app.use("/public/js",express.static(path + '/app/public/js'))
 
