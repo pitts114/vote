@@ -29,10 +29,13 @@ app.get("/api/polls", (req,res)=>{
   pollHandler.findAllPolls(res)
 })
 
+app.get("/api", (req,res)=>{
+  res.sendFile(path + "/app/public/api.html")
+})
+
 //serve react files
 app.use(express.static(path + '/client/build'))
 
-app.use("/api.html", express.static(path + "/app/public/api.html"))
 app.use("/public/css", express.static(path + '/app/public/css'))
 app.use("/public/js",express.static(path + '/app/public/js'))
 
