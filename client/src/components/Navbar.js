@@ -4,11 +4,6 @@ import "./Navbar.css"
 class Navbar extends Component {
   constructor(props){
     super(props)
-    this.state={
-      IsActive:{
-        Home: true
-      }
-    }
     this.clickHome = this.clickHome.bind(this)
   }
 
@@ -18,6 +13,9 @@ class Navbar extends Component {
   }
 
   render() {
+    var homeClass = ''
+    if (this.props.active === "Home")
+      homeClass="active"
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
@@ -29,9 +27,9 @@ class Navbar extends Component {
             </button>
             <a className="navbar-brand" href="/">Vote</a>
           </div>
-          <div className="collapse navbar-collapse" id="myNavbar">
+          <div className="collapse navbar-collapse text-center" id="myNavbar">
             <ul className="nav navbar-nav">
-              <li className="active">
+              <li className={homeClass}>
                 <a href="" onClick={(e)=>{this.clickHome(e)}}>Home</a>
               </li>
               <li>

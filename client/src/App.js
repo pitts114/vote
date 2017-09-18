@@ -31,14 +31,14 @@ class App extends Component {
     if (this.state.activePage === "Home")
     return (
       <div className="App">
-        <Navbar goHome={this.goHome}/>
+        <Navbar goHome={this.goHome} active={this.state.activePage}/>
         <Frontpage featurePoll={this.featurePoll}/>
       </div>
     );
     else {
       return(
         <div className="App">
-          <Navbar goHome={this.goHome}/>
+          <Navbar goHome={this.goHome} active={this.state.activePage}/>
           <PollPage poll={this.state.activePage} />
         </div>
       )

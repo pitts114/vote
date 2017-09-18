@@ -1,6 +1,5 @@
 .App {
-  text-align: center;
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -17,4 +16,12 @@ svg {
   margin-top:65px;
   background-color: rgba(255,255,255,0);
   color: white;
+}
+
+.PollPage {
+  margin-top: 65px;
+}
+
+label {
+  color: black;
 }

@@ -40,14 +40,13 @@ class FrontpagePolls extends Component {
 
 function poll(obj, id, featureFunc){
   return(
-    <a key={obj._id} onClick={()=>{featureFunc(obj._id)}}>
-      <div id={"poll" + id.toString()} className="col-xs-12 col-sm-6 animated fadeInRight">
+      <div key={obj._id} id={"poll" + id.toString()} className="col-xs-12 col-sm-6 animated fadeInRight text-center">
         <h3>{obj.title}</h3>
         <div className="well">
           <PieChart choices={obj.choices} />
+          <button onClick={()=>{featureFunc(obj._id)}} className="btn btn-primary">Vote!</button>
         </div>
       </div>
-    </a>
   )
 }
 
