@@ -40,7 +40,7 @@ class FrontpagePolls extends Component {
 
 function poll(obj, id){
   return(
-    <div key={obj._id} className="col-xs-6">
+    <div key={obj._id} className="col-xs-12 col-sm-6">
       <div id={"poll" + id.toString()} className="well text-center animated fadeInRight">
         <h3>{obj.title}</h3>
         {pieChart(obj.choices)}
