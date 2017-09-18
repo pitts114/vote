@@ -40,3 +40,7 @@
   -o-animation-delay: 3s;
   -ms-animation-delay: 3s;
 }
+
+.pie {
+  max-width: 300px;
+}

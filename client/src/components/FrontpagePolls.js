@@ -50,12 +50,20 @@ function poll(obj, id){
 }
 
 function pieChart(choices) {
-  var data = []
-  for (var i =0; i < choices.length; i++){
-    data.push({x:choices[i].choice, y:choices[i].votes})
+  var data = choices.filter((element)=>{
+    return element.votes > 0
+  }).map((element)=>{
+    return {x: element.choice, y: element.votes}
+  })
+  if (data.length === 0){
+    data = [{x:"None", y:1}]
   }
+  else {
+
+  }
+
   return(
-    <VictoryPie data={data}/>
+    <VictoryPie className="pie" data={data} colorScale="qualitative" padAngle={3} innerRadius={60} responsive={true}/>
   )
 }
 
