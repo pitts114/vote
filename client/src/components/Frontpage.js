@@ -4,7 +4,7 @@ import FrontpagePolls from "./FrontpagePolls.js"
 
 function Frontpage(){
   return(
-    <div>
+    <div className="container">
       <Jumbotron />
       <FrontpagePolls />
     </div>
