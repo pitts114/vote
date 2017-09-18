@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import axios from "axios"
 import "./FrontpagePolls.css"
+import {VictoryPie} from "victory-pie"
 
 const displayAmount = 6
 
@@ -42,8 +43,19 @@ function poll(obj, id){
     <div key={obj._id} className="col-xs-6">
       <div id={"poll" + id.toString()} className="well text-center animated fadeInRight">
         <h3>{obj.title}</h3>
+        {pieChart(obj.choices)}
       </div>
     </div>
+  )
+}
+
+function pieChart(choices) {
+  var data = []
+  for (var i =0; i < choices.length; i++){
+    data.push({x:choices[i].choice, y:choices[i].votes})
+  }
+  return(
+    <VictoryPie data={data}/>
   )
 }
 
