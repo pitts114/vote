@@ -9,7 +9,7 @@ module.exports = function(app, express) {
 app.route("/api/new")
   .post((req, res)=>{
     var title = req.body.title
-    var choices = req.body.choices.replace(', ',',').split(',')
+    var choices = req.body.choices.replace(/\s*,\s*/g, ",").split(',')
     pollHandler.newPoll(res, title, choices)
   })
 

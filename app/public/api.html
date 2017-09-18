@@ -31,11 +31,13 @@
     <p><code>https://vote-jp.herokuapp.com/api/new</code></p>
     <h4>POST</h4>
     <p>Body format:</p>
-    <p><code>{<br>"title":"What's your favorite color?<br>"choices":"Red, Blue, Green"<br>}</code></p>
+    <p><code>{<br>"title":"What's your favorite flavor?<br>"choices":"Chocolate, Vanilla"<br>}</code></p>
+    <p>Response:</p>
+    <p><code>{<br>"status": "200",<br>"id": "H1DV9P35-",<br>"title": "What's your favorite flavor?",<br>"choices": [<br>"Chocolate",<br>"Vanilla"<br> ]<br>}</code></p>
     <h2>View Poll</h2>
     <h3>Route</h3>
     <p><code>https://vote-jp.herokuapp.com/api/&ltpoll id&gt</code></p>
-
+    <h4>GET</h4>
   </div>
   </body>
 </html>
