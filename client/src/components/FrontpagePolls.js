@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import axios from "axios"
+import "./FrontpagePolls.css"
 
 const displayAmount = 6
 
@@ -21,8 +22,9 @@ class FrontpagePolls extends Component {
     axios.get("/api/polls").then((response)=>{
       console.log(response.data)
       var Polls = []
+      var id = 1
       for (var i = response.data.length-1; i >= 0 && i > response.data.length - displayAmount-1; i--){
-        Polls.push(poll(response.data[i]))
+        Polls.push(poll(response.data[i], id++))
       }
       this.setState({
         polls: <div className="row">{Polls}</div>
@@ -35,10 +37,10 @@ class FrontpagePolls extends Component {
   }
 }
 
-function poll(obj){
+function poll(obj, id){
   return(
     <div key={obj._id} className="col-xs-6">
-      <div className="well text-center animated fadeInRight">
+      <div id={"poll" + id.toString()} className="well text-center animated fadeInRight">
         <h3>{obj.title}</h3>
       </div>
     </div>
