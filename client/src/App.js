@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navbar from "./components/Navbar.js"
 import Frontpage from "./components/Frontpage.js"
+import PollPage from "./components/PollPage.js"
 
 
 class App extends Component {
@@ -19,6 +20,14 @@ class App extends Component {
         <Frontpage />
       </div>
     );
+    else {
+      return(
+        <div className="App">
+          <Navbar />
+          <PollPage poll={this.state.activePage} />
+        </div>
+      )
+    }
   }
 }
 
