@@ -2,8 +2,20 @@ import React, {Component} from "react"
 import "./Navbar.css"
 
 class Navbar extends Component {
+  constructor(props){
+    super(props)
+    this.clickHome = this.clickHome.bind(this)
+  }
+
+  clickHome(e){
+    e.preventDefault()
+    this.props.goHome()
+  }
 
   render() {
+    var homeClass = ''
+    if (this.props.active === "Home")
+      homeClass="active"
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
@@ -13,12 +25,12 @@ class Navbar extends Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="https://www.google.com">Vote</a>
+            <a className="navbar-brand" href="/">Vote</a>
           </div>
-          <div className="collapse navbar-collapse" id="myNavbar">
+          <div className="collapse navbar-collapse text-center" id="myNavbar">
             <ul className="nav navbar-nav">
-              <li className="active">
-                <a href="">Home</a>
+              <li className={homeClass}>
+                <a href="" onClick={(e)=>{this.clickHome(e)}}>Home</a>
               </li>
               <li>
                 <a href="/api">API</a>

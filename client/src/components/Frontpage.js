@@ -1,14 +1,16 @@
-import React from "react"
+import React, {Component} from "react"
 import Jumbotron from "./Jumbotron.js"
 import FrontpagePolls from "./FrontpagePolls.js"
 
-function Frontpage(){
-  return(
-    <div className="container">
-      <Jumbotron />
-      <FrontpagePolls />
-    </div>
-  )
+class Frontpage extends Component{
+  render(){
+    return(
+      <div className="container">
+        <Jumbotron />
+        <FrontpagePolls featurePoll={this.props.featurePoll} />
+      </div>
+    )
+  }
 }
 
 export default Frontpage
