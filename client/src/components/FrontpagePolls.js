@@ -53,7 +53,7 @@ function pieChart(choices) {
   var data = choices.filter((element)=>{
     return element.votes > 0
   }).map((element)=>{
-    return {x: element.choice, y: element.votes}
+    return {x: element.choice + ": " + element.votes.toString(), y: element.votes, label: element.choice + ": " + element.votes.toString()}
   })
   if (data.length === 0){
     data = [{x:"None", y:1}]
@@ -63,7 +63,7 @@ function pieChart(choices) {
   }
 
   return(
-    <VictoryPie className="pie" data={data} colorScale="qualitative" padAngle={3} innerRadius={60} responsive={true}/>
+    <VictoryPie className="pie" data={data} colorScale="qualitative" padAngle={3} innerRadius={70} responsive={true} width={550}/>
   )
 }
 
