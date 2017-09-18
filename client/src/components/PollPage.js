@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PieChart from "./PieChart.js"
 import axios from "axios"
+import Form from "./Form.js"
 
 class PollPage extends Component {
   constructor(props){
@@ -22,7 +23,7 @@ componentDidMount() {
       this.setState({
         element: <div className="jumbotron">
           <PieChart choices={response.data.choices} />
-          {makeForm(response.data)}
+          <Form data={response.data}/>
         </div>
       })
     })
@@ -42,29 +43,6 @@ componentDidMount() {
   }
 }
 
-function makeForm(data) {
-  var radios = []
-  data.choices.forEach((element)=>{
-    radios.push(
-      <div className="radio">
-        <label>
-        <input type="radio" name={data.title} value={element.choice} />
-        {element.choice}
-        </label>
-      </div>
-    )
-  })
-  return(
-    <form>
-    	<div className="form-group">
-    		<label className="control-label">Vote:</label>
-        {radios}
-    	</div>
-    	<div className="form-group">
-    		<button className="btn btn-primary " name="submit" type="submit">Submit</button>
-    	</div>
-    </form>
-  )
-}
+
 
 export default PollPage
