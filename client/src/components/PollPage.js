@@ -23,7 +23,7 @@ componentDidMount() {
       this.setState({
         element: <div className="jumbotron">
           <PieChart choices={response.data.choices} />
-          <Form data={response.data}/>
+          <Form data={response.data} refresh={this.getPolls}/>
         </div>
       })
     })
