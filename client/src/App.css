@@ -12,3 +12,7 @@ body {
 svg {
     pointer-events: none;
 }
+
+.jumbotron {
+  margin-top:65px;
+}
