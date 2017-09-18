@@ -11,13 +11,21 @@ class App extends Component {
     this.state= {
       activePage: "Home"
     }
+    this.featurePoll = this.featurePoll.bind(this)
   }
+
+  featurePoll(pollId) {
+    const state = this.state
+    state.activePage = "poll:" + pollId
+    this.setState(state)
+  }
+
   render() {
     if (this.state.activePage === "Home")
     return (
       <div className="App">
         <Navbar />
-        <Frontpage />
+        <Frontpage featurePoll={this.featurePoll}/>
       </div>
     );
     else {
