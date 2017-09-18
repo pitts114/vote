@@ -12,6 +12,7 @@ class App extends Component {
       activePage: "Home"
     }
     this.featurePoll = this.featurePoll.bind(this)
+    this.goHome=this.goHome.bind(this)
   }
 
   featurePoll(pollId) {
@@ -20,18 +21,24 @@ class App extends Component {
     this.setState(state)
   }
 
+  goHome(){
+    const state = this.state
+    state.activePage="Home"
+    this.setState(state)
+  }
+
   render() {
     if (this.state.activePage === "Home")
     return (
       <div className="App">
-        <Navbar />
+        <Navbar goHome={this.goHome}/>
         <Frontpage featurePoll={this.featurePoll}/>
       </div>
     );
     else {
       return(
         <div className="App">
-          <Navbar />
+          <Navbar goHome={this.goHome}/>
           <PollPage poll={this.state.activePage} />
         </div>
       )
