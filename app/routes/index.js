@@ -70,9 +70,6 @@ app.get("/api/polls", (req,res)=>{
   }
 })
 
-app.get("/api", (req,res)=>{
-  res.sendFile(path + "/app/public/api.html")
-})
 
 //serve react files
 app.use(express.static(path + '/client/build'))
