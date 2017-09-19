@@ -1,7 +1,5 @@
 var mongoose = require("mongoose")
 var Schema = mongoose.Schema
-var shortid = require("shortid")
-
 
 var User = new Schema ({
   github: {
@@ -9,6 +7,5 @@ var User = new Schema ({
     displayName: String,
     username: String,
     publicRepos: Number
-  },
-  polls:
+  }
 })
