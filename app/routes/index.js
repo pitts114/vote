@@ -61,11 +61,12 @@ app.route("/api/poll/:id")
   })
 
 app.get("/api/polls", (req,res)=>{
+  console.log(req.query.limit)
   if (!req.query.page){
-    pollHandler.findAllPolls(res, 0) //most recent
+    pollHandler.findAllPolls(res, 0, 0) //most recent
   }
   else {
-    pollHandler.findAllPolls(res, req.query.page)
+    pollHandler.findAllPolls(res, req.query.page, req.query.limit)
   }
 })
 
