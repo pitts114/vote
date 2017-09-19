@@ -3,8 +3,6 @@ import axios from "axios"
 import "./FrontpagePolls.css"
 import PieChart from "./PieChart.js"
 
-const displayAmount = 6 //How many polls should be displayed on the frontpage
-
 class FrontpagePolls extends Component {
   constructor(props){
     super(props)
@@ -20,11 +18,11 @@ class FrontpagePolls extends Component {
   }
 
   getPolls() {
-    axios.get("/api/polls").then((response)=>{
+    axios.get("/api/polls?page=0&limit=6").then((response)=>{
       console.log(response.data)
       var Polls = []
       var id = 1
-      for (var i = response.data.length-1; i >= 0 && i > response.data.length - displayAmount-1; i--){
+      for (var i = response.data.length-1; i >= 0; i--){
         Polls.push(poll(response.data[i], id++, this.props.featurePoll))
       }
       this.setState({
