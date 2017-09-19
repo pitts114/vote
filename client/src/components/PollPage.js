@@ -7,35 +7,48 @@ class PollPage extends Component {
   constructor(props){
     super(props)
     this.state = {
-      element: <div></div>
+      data: {}
     }
     this.componentDidMount = this.componentDidMount.bind(this)
     this.getPolls = this.getPolls.bind(this)
+    this.refresh = this.refresh.bind(this)
   }
 
 componentDidMount() {
   this.getPolls()
 }
 
+  refresh(data){
+    this.setState({
+      data:data
+    })
+  }
+
   getPolls() {
     var pollId = this.props.poll.replace("poll:", "")
     axios.get("/api/poll/" + pollId).then((response)=>{
       this.setState({
-        element: <div className="jumbotron">
-          <PieChart choices={response.data.choices} />
-          <Form data={response.data} refresh={this.getPolls}/>
-        </div>
+        data: response.data
       })
     })
   }
 
 
   render(){
+    if (!this.state.data.title)
     return(
       <div className="container PollPage">
         <div className="col-xs-12 col-sm-8 col-sm-offset-2">
+        </div>
+      </div>
+    )
+    return(
+      <div className="container PollPage">
+        <div className="col-xs-12 col-sm-8 col-sm-offset-2">
+          <h1 className="text-center text-white">{this.state.data.title}</h1>
           <div className="well">
-            {this.state.element}
+            <PieChart choices={this.state.data.choices} />
+            <Form data={this.state.data} refresh={this.refresh}/>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ svg {
     pointer-events: none;
 }
 
-.jumbotron {
+.Jumbotron {
   margin-top:65px;
   background-color: rgba(255,255,255,0);
   color: white;
@@ -24,4 +24,8 @@ svg {
 
 label {
   color: black;
+}
+
+.text-white {
+  color: white;
 }
