@@ -29,3 +29,11 @@ label {
 .text-white {
   color: white;
 }
+
+.NewPollPage {
+  margin-top: 65px;
+}
+
+.text-dark {
+  color: #555;
+}
