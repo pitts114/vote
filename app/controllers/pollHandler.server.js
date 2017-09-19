@@ -32,8 +32,16 @@ function PollHandler() {
     })
   }
 
-  this.findAllPolls = function(res, pageNumber) {
-    Polls.find({},{"choices._id": false}).skip(pageNumber*resultsPerPage)
+  this.findAllPolls = function(res, pageNumber, pageLimit) {
+    var limit
+    if (pageLimit && pageLimit !== 0){
+      limit = pageLimit
+    }
+    else {
+      limit = resultsPerPage
+    }
+
+    Polls.find({},{"choices._id": false}).skip(pageNumber*limit)
       .exec((err, results)=>{
         if (err){
           console.log("Error finding all polls")
@@ -42,7 +50,7 @@ function PollHandler() {
         console.log(results)
         if (results[0]){
               res.json(results.filter((val, index, arr)=>{
-                return index < resultsPerPage
+                return index < limit
               }))
         }
         else{
