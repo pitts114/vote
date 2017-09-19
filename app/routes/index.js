@@ -38,5 +38,6 @@ app.use(express.static(path + '/client/build'))
 
 app.use("/public/css", express.static(path + '/app/public/css'))
 app.use("/public/js",express.static(path + '/app/public/js'))
+app.use("/public/fonts", express.static(path + '/app/public/fonts'))
 
 }

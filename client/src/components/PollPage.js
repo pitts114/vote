@@ -49,6 +49,7 @@ componentDidMount() {
           <div className="well">
             <PieChart choices={this.state.data.choices} />
             <Form data={this.state.data} refresh={this.refresh}/>
+            <button onClick={this.props.goHome} className="btn btn-primary"><span className="glyphicon glyphicon-menu-left"></span></button>
           </div>
         </div>
       </div>
