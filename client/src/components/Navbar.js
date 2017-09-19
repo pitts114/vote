@@ -12,10 +12,19 @@ class Navbar extends Component {
     this.props.goHome()
   }
 
+  clickNew(e){
+    e.preventDefault()
+    this.props.goNew()
+  }
+
   render() {
     var homeClass = ''
+    var newClass = ''
     if (this.props.active === "Home")
       homeClass="active"
+    else if (this.props.active === "New")
+      newClass = "active"
+
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
@@ -31,6 +40,9 @@ class Navbar extends Component {
             <ul className="nav navbar-nav">
               <li className={homeClass}>
                 <a href="" onClick={(e)=>{this.clickHome(e)}}>Home</a>
+              </li>
+              <li className={newClass}>
+                <a href="" onClick={(e)=>{this.clickNew(e)}}>New Poll</a>
               </li>
               <li>
                 <a href="/api">API</a>

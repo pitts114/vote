@@ -31,7 +31,7 @@ class App extends Component {
 
   goNewPoll(){
     const state = this.state
-    state.actovePage="New"
+    state.activePage="New"
     this.setState(state)
   }
 
@@ -52,7 +52,7 @@ class App extends Component {
 
     return(
       <div className="App">
-        <Navbar goHome={this.goHome} active={this.state.activePage}/>
+        <Navbar goHome={this.goHome} goNew={this.goNewPoll} active={this.state.activePage}/>
         {page}
       </div>
     )
