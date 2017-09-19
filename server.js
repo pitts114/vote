@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 
 mongoose.connect(process.env.MONGO_URI)
 
-routes(app, express)
+routes(app, express, passport)
 
 
 var port = process.env.PORT || 8080

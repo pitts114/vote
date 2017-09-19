@@ -1,7 +1,16 @@
 var path = process.cwd()
 var PollHandler = require(path + "/app/controllers/pollHandler.server.js")
 
-module.exports = function(app, express) {
+module.exports = function(app, express, passport) {
+
+  function IsLoggedIn(req,res,next){
+    if (req.isAuthenticated()){
+      return next()
+    }
+    else {
+      res.redirect("/login")
+    }
+  }
 
   var pollHandler = new PollHandler()
 
