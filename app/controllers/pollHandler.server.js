@@ -1,4 +1,5 @@
 var Polls = require("../models/polls.js")
+const resultsPerPage = 10
 
 function PollHandler() {
   this.newPoll = function(res, title, choices){
@@ -31,8 +32,8 @@ function PollHandler() {
     })
   }
 
-  this.findAllPolls = function(res) {
-    Polls.find({},{"choices._id": false})
+  this.findAllPolls = function(res, pageNumber) {
+    Polls.find({},{"choices._id": false}).skip(pageNumber*resultsPerPage)
       .exec((err, results)=>{
         if (err){
           console.log("Error finding all polls")
@@ -40,7 +41,9 @@ function PollHandler() {
         }
         console.log(results)
         if (results[0]){
-              res.json(results)
+              res.json(results.filter((val, index, arr)=>{
+                return index < resultsPerPage
+              }))
         }
         else{
           res.json({"status":"There are no polls!"})

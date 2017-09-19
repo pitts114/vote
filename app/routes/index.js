@@ -26,7 +26,12 @@ app.route("/api/poll/:id")
   })
 
 app.get("/api/polls", (req,res)=>{
-  pollHandler.findAllPolls(res)
+  if (!req.query.page){
+    pollHandler.findAllPolls(res, 0) //most recent
+  }
+  else {
+    pollHandler.findAllPolls(res, req.query.page)
+  }
 })
 
 app.get("/api", (req,res)=>{
