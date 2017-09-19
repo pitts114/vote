@@ -39,7 +39,7 @@ class App extends Component {
       return(
         <div className="App">
           <Navbar goHome={this.goHome} active={this.state.activePage}/>
-          <PollPage poll={this.state.activePage} />
+          <PollPage poll={this.state.activePage} goHome={this.goHome}/>
         </div>
       )
     }
