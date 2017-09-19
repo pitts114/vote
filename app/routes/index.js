@@ -13,29 +13,21 @@ module.exports = function(app, express, passport) {
     }
   }
 
-  app.route("/login").get((req, res)=>{
-    res.sendFile(path + "/app/public/login.html")
-  })
-
   app.get("/logout", (req, res)=>{
     req.logout()
-    res.redirect("/login")
+    res.redirect("/")
   })
 
-  app.get("/profile", (req,res)=>{
-    res.sendFile(path + "/app/public/profile.html")
-  })
 
-  app.route("/api/user")
+  app.route("/api/user") //get the logged in user's info
     .get(IsLoggedIn, (req,res)=>{
       res.json(req.user.github)
     })
 
-  app.route("/auth/github").get(passport.authenticate("github"))
-
+  app.route("/auth/github").get(passport.authenticate("github")) //go to github and login
   app.route("/auth/github/callback").get(passport.authenticate("github", {
     successRedirect: "/",
-    failureRedirect: "/login"
+    failureRedirect: "/"
   }))
 
   var pollHandler = new PollHandler()

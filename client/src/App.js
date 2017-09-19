@@ -10,7 +10,8 @@ class App extends Component {
   constructor(){
     super()
     this.state= {
-      activePage: "Home"
+      activePage: "Home",
+      user: false
     }
     this.featurePoll = this.featurePoll.bind(this)
     this.goHome=this.goHome.bind(this)
@@ -52,7 +53,7 @@ class App extends Component {
 
     return(
       <div className="App">
-        <Navbar goHome={this.goHome} goNew={this.goNewPoll} active={this.state.activePage}/>
+        <Navbar goHome={this.goHome} goNew={this.goNewPoll} active={this.state.activePage} user={this.state.user}/>
         {page}
       </div>
     )

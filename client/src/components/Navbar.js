@@ -47,13 +47,24 @@ class Navbar extends Component {
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <a href="https://www.google.com">Login</a>
+                {loginLogout(this.props.user)}
               </li>
             </ul>
           </div>
         </div>
       </nav>
     )
+  }
+}
+
+function loginLogout(user){
+  if (user){
+    return(
+      <a href="" onClick={(e)=>{e.preventDefault()}}>Logout</a>
+    )
+  }
+  else {
+    return <a href="" onClick={(e)=>{e.preventDefault()}}>Login</a>
   }
 }
 
