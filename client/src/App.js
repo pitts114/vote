@@ -43,7 +43,7 @@ class App extends Component {
         page = <Frontpage featurePoll={this.featurePoll}/>
         break
       case "New":
-        page = <NewPollPage />
+        page = <NewPollPage goPoll={this.featurePoll}/>
         break
       default:
         page = <PollPage poll={this.state.activePage} goHome={this.goHome}/>

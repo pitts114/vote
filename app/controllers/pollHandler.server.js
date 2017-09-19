@@ -22,7 +22,7 @@ function PollHandler() {
       }
       else {
         res.json({
-          status: "200",
+          status: 200,
           id: poll._id,
           title: title,
           choices: choices
