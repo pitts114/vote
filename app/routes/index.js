@@ -9,7 +9,7 @@ module.exports = function(app, express, passport) {
       return next()
     }
     else {
-      res.redirect("/login")
+      res.json({user:false})
     }
   }
 
@@ -26,7 +26,7 @@ module.exports = function(app, express, passport) {
     res.sendFile(path + "/app/public/profile.html")
   })
 
-  app.route("/api/user/:id")
+  app.route("/api/user")
     .get(IsLoggedIn, (req,res)=>{
       res.json(req.user.github)
     })
