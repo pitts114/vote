@@ -46,6 +46,7 @@ class Navbar extends Component {
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
+              {welcomeMsg(this.props.user)}
               <li>
                 {loginLogout(this.props.user)}
               </li>
@@ -66,6 +67,17 @@ function loginLogout(user){
   else {
     return <a href="" onClick={(e)=>{e.preventDefault()}}>Login</a>
   }
+}
+
+function welcomeMsg(user){
+  if (user.displayName){
+    return (
+      <li>
+        <a>{"Welcome, " + user.displayName}</a>
+      </li>
+    )
+  }
+  return
 }
 
 /*
