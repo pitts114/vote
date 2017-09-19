@@ -17,7 +17,14 @@ module.exports = function(app, express, passport) {
     res.sendFile(path + "/app/public/login.html")
   })
 
+  app.get("/logout", (req, res)=>{
+    req.logout()
+    res.redirect("/login")
+  })
 
+  app.get("/profile", (req,res)=>{
+    res.sendFile(path + "/app/public/profile.html")
+  })
 
 
 
