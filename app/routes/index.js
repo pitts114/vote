@@ -1,5 +1,6 @@
 var path = process.cwd()
 var PollHandler = require(path + "/app/controllers/pollHandler.server.js")
+var UserHandler = require(path + "/app/controllers/userHandler.server.js")
 
 module.exports = function(app, express, passport) {
 
@@ -11,6 +12,14 @@ module.exports = function(app, express, passport) {
       res.redirect("/login")
     }
   }
+
+  app.route("/login").get((req, res)=>{
+    res.sendFile(path + "/app/public/login.html")
+  })
+
+
+
+
 
   var pollHandler = new PollHandler()
 

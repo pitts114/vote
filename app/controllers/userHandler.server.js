@@ -1,4 +1,4 @@
-var Users = require("../models.users.js")
+var Users = require("../models/users.js")
 
 function UserHandler(){
   this.getInfo() = function(req, res){
@@ -11,5 +11,5 @@ function UserHandler(){
           displayName: results.displayName
         })
       })
-  {
+    }
 }
