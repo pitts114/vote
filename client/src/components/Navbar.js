@@ -44,9 +44,6 @@ class Navbar extends Component {
               <li className={newClass}>
                 <a href="" onClick={(e)=>{this.clickNew(e)}}>New Poll</a>
               </li>
-              <li>
-                <a href="/api">API</a>
-              </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li>
