@@ -26,7 +26,17 @@ module.exports = function(app, express, passport) {
     res.sendFile(path + "/app/public/profile.html")
   })
 
+  app.route("/api/user/:id")
+    .get(IsLoggedIn, (req,res)=>{
+      res.json(req.user.github)
+    })
 
+  app.route("/auth/github").get(passport.authenticate("github"))
+
+  app.route("/auth/github/callback").get(passport.authenticate("github", {
+    successRedirect: "/",
+    failureRedirect: "/login"
+  }))
 
   var pollHandler = new PollHandler()
 
