@@ -5,32 +5,29 @@ import {Link} from "react-router-dom"
 class Navbar extends Component {
   constructor(props){
     super(props)
-    this.clickHome = this.clickHome.bind(this)
+    this.setActivePage = this.setActivePage.bind(this)
   }
 
-  clickHome(e){
-    e.preventDefault()
-    this.props.goHome()
-  }
-
-  clickNew(e){
-    e.preventDefault()
-    this.props.goNew()
-  }
-
-  clickLogin(e){
-    e.preventLogin()
-    this.props.goLogin()
+  setActivePage(){
+    var obj = {home: "", new: "", login: ""}
+    switch (this.props.path){
+      case "/":
+        obj.home = "active"
+        break
+      case "/new":
+        obj.new = "active"
+        break
+      case "/login":
+        obj.login = "active"
+        break
+      default:
+        break
+    }
+    return obj
   }
 
   render() {
-    var homeClass = ''
-    var newClass = ''
-    if (this.props.active === "Home")
-      homeClass="active"
-    else if (this.props.active === "New")
-      newClass = "active"
-
+    var activePage = this.setActivePage()
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
@@ -44,17 +41,17 @@ class Navbar extends Component {
           </div>
           <div className="collapse navbar-collapse text-center" id="myNavbar">
             <ul className="nav navbar-nav">
-              <li className={homeClass}>
+              <li className={activePage.home}>
                 <Link to={"/"}>Home</Link>
               </li>
-              <li className={newClass}>
+              <li className={activePage.new}>
                 <Link to="/new">New Poll</Link>
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               {welcomeMsg(this.props.user)}
-              <li>
-                {loginLogout(this.props.user, this.props.goLogin)}
+              <li className={activePage.login}>
+                {loginLogout(this.props.user)}
               </li>
             </ul>
           </div>
@@ -64,7 +61,7 @@ class Navbar extends Component {
   }
 }
 
-function loginLogout(user, goLogin){
+function loginLogout(user){
   if (user){
     return(
       <a href="/logout">Logout</a>

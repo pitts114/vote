@@ -4,7 +4,6 @@ import FrontpagePolls from "./FrontpagePolls.js"
 
 class Frontpage extends Component{
   render(){
-    console.log(this.props)
     return(
       <div className="container">
         <Jumbotron />
