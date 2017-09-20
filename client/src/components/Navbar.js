@@ -9,7 +9,7 @@ class Navbar extends Component {
   }
 
   setActivePage(){
-    var obj = {home: "", new: "", login: ""}
+    var obj = {home: "", new: "", login: "", profile:""}
     switch (this.props.path){
       case "/":
         obj.home = "active"
@@ -19,6 +19,9 @@ class Navbar extends Component {
         break
       case "/login":
         obj.login = "active"
+        break
+      case "/profile":
+        obj.profile = "active"
         break
       default:
         break
@@ -49,7 +52,7 @@ class Navbar extends Component {
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              {welcomeMsg(this.props.user)}
+              {welcomeMsg(this.props.user, activePage.profile)}
               <li className={activePage.login}>
                 {loginLogout(this.props.user)}
               </li>
@@ -72,10 +75,10 @@ function loginLogout(user){
   }
 }
 
-function welcomeMsg(user){
+function welcomeMsg(user, activePage){
   if (user){
     return (
-      <li>
+      <li className={activePage}>
         <Link to="/profile">{"Welcome, " + user.split(" ")[0]}</Link>
       </li>
     )
