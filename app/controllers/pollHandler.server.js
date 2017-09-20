@@ -2,7 +2,11 @@ var Polls = require("../models/polls.js")
 const resultsPerPage = 10
 
 function PollHandler() {
-  this.newPoll = function(res, title, choices){
+  this.newPoll = function(res, title, choices, owner){
+    if (!title || choices.length === 0){
+      res.json({error:"Please do not leave the title or choices blank"})
+      return
+    }
 
     var choicesArr = choices.map((element)=>{
       return {choice: element, votes: 0}
@@ -10,7 +14,8 @@ function PollHandler() {
 
     var poll = new Polls({
       title: title,
-      choices: choicesArr
+      choices: choicesArr,
+      owner: owner
     })
 
     poll.save((err)=>{
@@ -90,15 +95,23 @@ function PollHandler() {
     })
   }
 
-  this.deletePoll = function(res, id){
-    Polls.remove({"_id":id}).exec((err, results)=>{
-      if (results.result.n === 0){
-        res.json({"status": "Poll does not exist: No poll was deleted."})
+  this.deletePoll = function(res, id, owner){
+    Polls.findOne({"_id":id}).exec((err,result)=>{
+      if (result.owner === owner){
+        Polls.remove({"_id":id}).exec((err, results)=>{
+          if (results.result.n === 0){
+            res.json({"status": "Poll does not exist: No poll was deleted."})
+          }
+          else {
+            res.json({"status": "Poll deleted."})
+          }
+        })
       }
       else {
-        res.json({"status": "Poll deleted."})
+        res.json({"error":"You are not the owner of this poll!"})
       }
     })
+
   }
 
 }

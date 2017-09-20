@@ -32,6 +32,10 @@ class NewPollPage extends Component {
       choices: this.state.choicesValue
     })
     .then((response)=>{
+      if (response.data.error){
+        alert("Please make a full poll")
+        return
+      }
       if (response.data.status === 200){
         console.log(response.data.id)
         this.props.goPoll(response.data.id)

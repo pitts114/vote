@@ -35,9 +35,10 @@ module.exports = function(app, express, passport) {
 //API stuff
 app.route("/api/new")
   .post((req, res)=>{
+    var owner = getVoter(req)
     var title = req.body.title
     var choices = req.body.choices.replace(/\s*,\s*/g, ",").split(',')
-    pollHandler.newPoll(res, title, choices)
+    pollHandler.newPoll(res, title, choices, owner)
   })
 
 app.route("/api/poll/:id")
@@ -45,18 +46,15 @@ app.route("/api/poll/:id")
     console.log("User " + req.sessionID + " is getting some poll info")
     pollHandler.findPoll(res, req.params.id)
   })
+
   .delete((req,res)=>{
-    pollHandler.deletePoll(res, req.params.id, (req.session.passport.user || req.sessionID))
+    var voter = getVoter(req)
+    pollHandler.deletePoll(res, req.params.id, voter)
   })
+
   .post((req,res)=>{
     console.log(req.session.passport)
-    var voter
-    if (req.session.passport){
-      voter = req.session.passport.user
-    }
-    else {
-      voter = req.sessionID
-    }
+    var voter = getVoter(req)
     pollHandler.vote(res, req.params.id, req.body.choice, voter)
   })
 
@@ -77,5 +75,16 @@ app.use(express.static(path + '/client/build'))
 app.use("/public/css", express.static(path + '/app/public/css'))
 app.use("/public/js",express.static(path + '/app/public/js'))
 app.use("/public/fonts", express.static(path + '/app/public/fonts'))
+
+}
+
+
+function getVoter(req){
+  if (req.session.passport){
+    return req.session.passport.user
+  }
+  else {
+    return req.sessionID
+  }
 
 }

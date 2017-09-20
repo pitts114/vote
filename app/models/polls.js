@@ -8,7 +8,8 @@ var Poll = new Schema({
   },
   title: String,
   choices: [{choice: String, votes: Number}],
-  voters: [String]
+  voters: [String],
+  owner: String
 }, { versionKey: false })
 
 module.exports = mongoose.model("Poll", Poll)
