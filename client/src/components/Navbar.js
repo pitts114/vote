@@ -78,7 +78,7 @@ function welcomeMsg(user){
   if (user){
     return (
       <li>
-        <a>{"Welcome, " + user.displayName}</a>
+        <a>{"Welcome, " + user}</a>
       </li>
     )
   }

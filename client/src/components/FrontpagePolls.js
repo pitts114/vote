@@ -19,7 +19,6 @@ class FrontpagePolls extends Component {
 
   getPolls() {
     axios.get("/api/polls?page=0&limit=6").then((response)=>{
-      console.log(response.data)
       var Polls = []
       var id = 1
       for (var i = response.data.length-1; i >= 0; i--){
