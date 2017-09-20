@@ -6,13 +6,22 @@ var mongoose = require("mongoose")
 var passport = require("passport")
 var path = process.cwd()
 require('dotenv').load();
+require("./app/config/passport.js")(passport)
 
 var app = express()
 app.use(bodyParser.json())
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 mongoose.connect(process.env.MONGO_URI)
 
-routes(app, express)
+routes(app, express, passport)
 
 
 var port = process.env.PORT || 8080

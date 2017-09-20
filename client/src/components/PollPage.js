@@ -37,7 +37,7 @@ componentDidMount() {
   render(){
     if (!this.state.data.title)
     return(
-      <div className="container PollPage">
+      <div className="container Page">
         <div className="col-xs-12 col-sm-8 col-sm-offset-2">
         </div>
       </div>

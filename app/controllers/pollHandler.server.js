@@ -1,7 +1,12 @@
 var Polls = require("../models/polls.js")
+const resultsPerPage = 10
 
 function PollHandler() {
-  this.newPoll = function(res, title, choices){
+  this.newPoll = function(res, title, choices, owner){
+    if (!title || choices.length === 0){
+      res.json({error:"Please do not leave the title or choices blank"})
+      return
+    }
 
     var choicesArr = choices.map((element)=>{
       return {choice: element, votes: 0}
@@ -9,7 +14,8 @@ function PollHandler() {
 
     var poll = new Polls({
       title: title,
-      choices: choicesArr
+      choices: choicesArr,
+      owner: owner
     })
 
     poll.save((err)=>{
@@ -31,16 +37,26 @@ function PollHandler() {
     })
   }
 
-  this.findAllPolls = function(res) {
-    Polls.find({},{"choices._id": false})
+  this.findAllPolls = function(res, pageNumber, pageLimit) {
+    var limit
+    if (pageLimit && pageLimit !== 0){
+      limit = pageLimit
+    }
+    else {
+      limit = resultsPerPage
+    }
+
+    Polls.find({},{"choices._id": false}).skip(pageNumber*limit)
       .exec((err, results)=>{
         if (err){
           console.log("Error finding all polls")
           throw err
         }
-        console.log(results)
+        //console.log(results)
         if (results[0]){
-              res.json(results)
+              res.json(results.filter((val, index, arr)=>{
+                return index < limit
+              }))
         }
         else{
           res.json({"status":"There are no polls!"})
@@ -61,28 +77,41 @@ function PollHandler() {
     })
   }
 
-  this.vote = function(res, id, choice){
-    /*
-    var fieldStr = "choices." + choice
-    Polls.findOneAndUpdate({"_id":id, choices:choice}, {$inc: {fieldStr: 1}}).exec((err, results)=>{
-      res.send()
-      console.log(results)
-    })
-    */
-    Polls.findOneAndUpdate({"_id":id, "choices.choice":choice}, {$inc: {"choices.$.votes": 1}}, {new:true}).exec((err, results)=>{
-      res.json(results)
+//TODO Make more efficient calls to db
+  this.vote = function(res, id, choice, voter){
+
+    Polls.findOne({"_id":id, "choices.choice":choice, "voters":voter}).exec((err,results)=>{
+      if (err) throw err
+      if (results){
+        res.json({"status":"You already voted!"})
+      }
+      else {
+        Polls.findOneAndUpdate({"_id":id, "choices.choice":choice}, {$inc: {"choices.$.votes": 1}, $push: {voters:voter}} ,{new:true})
+        .exec((err, results)=>{
+          if (err) throw err
+          res.json(results)
+        })
+      }
     })
   }
 
-  this.deletePoll = function(res, id){
-    Polls.remove({"_id":id}).exec((err, results)=>{
-      if (results.result.n === 0){
-        res.json({"status": "Poll does not exist: No poll was deleted."})
+  this.deletePoll = function(res, id, owner){
+    Polls.findOne({"_id":id}).exec((err,result)=>{
+      if (result.owner === owner){
+        Polls.remove({"_id":id}).exec((err, results)=>{
+          if (results.result.n === 0){
+            res.json({"status": "Poll does not exist: No poll was deleted."})
+          }
+          else {
+            res.json({"status": "Poll deleted."})
+          }
+        })
       }
       else {
-        res.json({"status": "Poll deleted."})
+        res.json({"error":"You are not the owner of this poll!"})
       }
     })
+
   }
 
 }

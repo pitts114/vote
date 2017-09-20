@@ -17,6 +17,11 @@ class Navbar extends Component {
     this.props.goNew()
   }
 
+  clickLogin(e){
+    e.preventLogin()
+    this.props.goLogin()
+  }
+
   render() {
     var homeClass = ''
     var newClass = ''
@@ -44,13 +49,11 @@ class Navbar extends Component {
               <li className={newClass}>
                 <a href="" onClick={(e)=>{this.clickNew(e)}}>New Poll</a>
               </li>
-              <li>
-                <a href="/api">API</a>
-              </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
+              {welcomeMsg(this.props.user)}
               <li>
-                <a href="https://www.google.com">Login</a>
+                {loginLogout(this.props.user, this.props.goLogin)}
               </li>
             </ul>
           </div>
@@ -58,6 +61,28 @@ class Navbar extends Component {
       </nav>
     )
   }
+}
+
+function loginLogout(user, goLogin){
+  if (user){
+    return(
+      <a href="/logout">Logout</a>
+    )
+  }
+  else {
+    return <a href="" onClick={(e)=>{e.preventDefault();goLogin()}}>Login</a>
+  }
+}
+
+function welcomeMsg(user){
+  if (user){
+    return (
+      <li>
+        <a>{"Welcome, " + user}</a>
+      </li>
+    )
+  }
+  return
 }
 
 /*

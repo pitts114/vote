@@ -32,6 +32,10 @@ class NewPollPage extends Component {
       choices: this.state.choicesValue
     })
     .then((response)=>{
+      if (response.data.error){
+        alert("Please make a full poll")
+        return
+      }
       if (response.data.status === 200){
         console.log(response.data.id)
         this.props.goPoll(response.data.id)
@@ -44,7 +48,7 @@ class NewPollPage extends Component {
 
   render(){
     return(
-      <div className="col-xs-12 col-sm-8 col-sm-offset-2 NewPollPage">
+      <div className="col-xs-12 col-sm-8 col-sm-offset-2 Page">
         <h1 className="text-center text-white">Create A New Poll</h1>
         <div className="well">
           <form>
