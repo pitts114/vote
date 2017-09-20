@@ -18,7 +18,7 @@ svg {
   color: white;
 }
 
-.PollPage {
+.Page {
   margin-top: 65px;
 }
 
@@ -30,9 +30,7 @@ label {
   color: white;
 }
 
-.NewPollPage {
-  margin-top: 65px;
-}
+
 
 .text-dark {
   color: #555;

@@ -17,6 +17,11 @@ class Navbar extends Component {
     this.props.goNew()
   }
 
+  clickLogin(e){
+    e.preventLogin()
+    this.props.goLogin()
+  }
+
   render() {
     var homeClass = ''
     var newClass = ''
@@ -48,7 +53,7 @@ class Navbar extends Component {
             <ul className="nav navbar-nav navbar-right">
               {welcomeMsg(this.props.user)}
               <li>
-                {loginLogout(this.props.user)}
+                {loginLogout(this.props.user, this.props.goLogin)}
               </li>
             </ul>
           </div>
@@ -58,14 +63,14 @@ class Navbar extends Component {
   }
 }
 
-function loginLogout(user){
+function loginLogout(user, goLogin){
   if (user){
     return(
-      <a href="" onClick={(e)=>{e.preventDefault()}}>Logout</a>
+      <a href="/logout">Logout</a>
     )
   }
   else {
-    return <a href="" onClick={(e)=>{e.preventDefault()}}>Login</a>
+    return <a href="" onClick={(e)=>{e.preventDefault();goLogin()}}>Login</a>
   }
 }
 

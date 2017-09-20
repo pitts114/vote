@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.js"
 import Frontpage from "./components/Frontpage.js"
 import PollPage from "./components/PollPage.js"
 import NewPollPage from "./components/NewPollPage.js"
+import LoginPage from "./components/LoginPage.js"
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
     this.featurePoll = this.featurePoll.bind(this)
     this.goHome=this.goHome.bind(this)
     this.goNewPoll = this.goNewPoll.bind(this)
+    this.goLogin = this.goLogin.bind(this)
   }
 
   featurePoll(pollId) {
@@ -36,6 +38,12 @@ class App extends Component {
     this.setState(state)
   }
 
+  goLogin(){
+    const state = this.state
+    state.activePage="Login"
+    this.setState(state)
+  }
+
   render() {
     var page
 
@@ -46,6 +54,9 @@ class App extends Component {
       case "New":
         page = <NewPollPage goPoll={this.featurePoll}/>
         break
+      case "Login":
+        page = <LoginPage />
+        break
       default:
         page = <PollPage poll={this.state.activePage} goHome={this.goHome}/>
         break
@@ -53,7 +64,7 @@ class App extends Component {
 
     return(
       <div className="App">
-        <Navbar goHome={this.goHome} goNew={this.goNewPoll} active={this.state.activePage} user={this.state.user}/>
+        <Navbar goHome={this.goHome} goNew={this.goNewPoll} goLogin={this.goLogin} active={this.state.activePage} user={this.state.user}/>
         {page}
       </div>
     )

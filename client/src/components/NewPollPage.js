@@ -48,7 +48,7 @@ class NewPollPage extends Component {
 
   render(){
     return(
-      <div className="col-xs-12 col-sm-8 col-sm-offset-2 NewPollPage">
+      <div className="col-xs-12 col-sm-8 col-sm-offset-2 Page">
         <h1 className="text-center text-white">Create A New Poll</h1>
         <div className="well">
           <form>
