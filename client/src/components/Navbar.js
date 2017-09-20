@@ -75,7 +75,7 @@ function loginLogout(user, goLogin){
 }
 
 function welcomeMsg(user){
-  if (user.displayName){
+  if (user){
     return (
       <li>
         <a>{"Welcome, " + user.displayName}</a>

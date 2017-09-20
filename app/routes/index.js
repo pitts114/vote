@@ -9,13 +9,13 @@ module.exports = function(app, express, passport) {
       return next()
     }
     else {
-      res.json({user:false})
+      res.json({"status":"Logged Out"})
     }
   }
 
   app.get("/logout", (req, res)=>{
     req.logout()
-    res.json({"status":"Logged out"})
+    res.redirect("/")
   })
 
 
