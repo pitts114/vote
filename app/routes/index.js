@@ -15,7 +15,7 @@ module.exports = function(app, express, passport) {
 
   app.get("/logout", (req, res)=>{
     req.logout()
-    res.redirect("/")
+    res.json({"status":"Logged out"})
   })
 
 
@@ -42,18 +42,26 @@ app.route("/api/new")
 
 app.route("/api/poll/:id")
   .get((req, res)=>{
-    console.log("Getting a poll")
+    console.log("User " + req.sessionID + " is getting some poll info")
     pollHandler.findPoll(res, req.params.id)
   })
   .delete((req,res)=>{
-    pollHandler.deletePoll(res, req.params.id)
+    pollHandler.deletePoll(res, req.params.id, (req.session.passport.user || req.sessionID))
   })
   .post((req,res)=>{
-    pollHandler.vote(res, req.params.id, req.body.choice)
+    console.log(req.session.passport)
+    var voter
+    if (req.session.passport){
+      voter = req.session.passport.user
+    }
+    else {
+      voter = req.sessionID
+    }
+    pollHandler.vote(res, req.params.id, req.body.choice, voter)
   })
 
 app.get("/api/polls", (req,res)=>{
-  console.log(req.query.limit)
+  //console.log(req.query.limit)
   if (!req.query.page){
     pollHandler.findAllPolls(res, 0, 0) //most recent
   }

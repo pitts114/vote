@@ -21,6 +21,10 @@ class Form extends Component {
     if (this.state.selected !== ""){
       axios.post("/api/poll/" + this.props.data._id, {choice: this.state.selected})
         .then((response)=>{
+          if (response.status === "You already voted!"){
+            alert("You already voted!")
+          }
+
           this.props.refresh(response.data)
           alert("You voted for " + this.state.selected)
         })

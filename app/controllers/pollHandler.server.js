@@ -47,7 +47,7 @@ function PollHandler() {
           console.log("Error finding all polls")
           throw err
         }
-        console.log(results)
+        //console.log(results)
         if (results[0]){
               res.json(results.filter((val, index, arr)=>{
                 return index < limit
@@ -72,16 +72,21 @@ function PollHandler() {
     })
   }
 
-  this.vote = function(res, id, choice){
-    /*
-    var fieldStr = "choices." + choice
-    Polls.findOneAndUpdate({"_id":id, choices:choice}, {$inc: {fieldStr: 1}}).exec((err, results)=>{
-      res.send()
-      console.log(results)
-    })
-    */
-    Polls.findOneAndUpdate({"_id":id, "choices.choice":choice}, {$inc: {"choices.$.votes": 1}}, {new:true}).exec((err, results)=>{
-      res.json(results)
+//TODO Make more efficient calls to db
+  this.vote = function(res, id, choice, voter){
+
+    Polls.findOne({"_id":id, "choices.choice":choice, "voters":voter}).exec((err,results)=>{
+      if (err) throw err
+      if (results){
+        res.json({"status":"You already voted!"})
+      }
+      else {
+        Polls.findOneAndUpdate({"_id":id, "choices.choice":choice}, {$inc: {"choices.$.votes": 1}, $push: {voters:voter}} ,{new:true})
+        .exec((err, results)=>{
+          if (err) throw err
+          res.json(results)
+        })
+      }
     })
   }
 
