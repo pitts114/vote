@@ -43,7 +43,7 @@ componentDidMount() {
       </div>
     )
     return(
-      <div className="container PollPage">
+      <div className="container Page">
         <div className="col-xs-12 col-sm-8 col-sm-offset-2">
           <h1 className="text-center text-white">{this.state.data.title}</h1>
           <div className="well">
