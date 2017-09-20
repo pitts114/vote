@@ -38,7 +38,7 @@ class NewPollPage extends Component {
       }
       if (response.data.status === 200){
         console.log(response.data.id)
-        this.props.goPoll(response.data.id)
+        this.props.history.push('/poll/' + response.data.id)
       }
       else {
         alert("Something went wrong!")
