@@ -76,7 +76,7 @@ function welcomeMsg(user){
   if (user){
     return (
       <li>
-        <a>{"Welcome, " + user}</a>
+        <Link to="/profile">{"Welcome, " + user}</Link>
       </li>
     )
   }
