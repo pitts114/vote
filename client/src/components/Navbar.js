@@ -71,7 +71,7 @@ function loginLogout(user, goLogin){
     )
   }
   else {
-    return <a href="" onClick={(e)=>{e.preventDefault();goLogin()}}>Login</a>
+    return <Link to="/login">Login</Link>
   }
 }
 
