@@ -76,7 +76,7 @@ function welcomeMsg(user){
   if (user){
     return (
       <li>
-        <Link to="/profile">{"Welcome, " + user}</Link>
+        <Link to="/profile">{"Welcome, " + user.split(" ")[0]}</Link>
       </li>
     )
   }
