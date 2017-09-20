@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import "./Navbar.css"
+import {Link} from "react-router-dom"
 
 class Navbar extends Component {
   constructor(props){
@@ -44,10 +45,10 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse text-center" id="myNavbar">
             <ul className="nav navbar-nav">
               <li className={homeClass}>
-                <a href="" onClick={(e)=>{this.clickHome(e)}}>Home</a>
+                <Link to={"/"}>Home</Link>
               </li>
               <li className={newClass}>
-                <a href="" onClick={(e)=>{this.clickNew(e)}}>New Poll</a>
+                <Link to="/new">New Poll</Link>
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">

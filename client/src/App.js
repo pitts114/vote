@@ -6,6 +6,7 @@ import PollPage from "./components/PollPage.js"
 import NewPollPage from "./components/NewPollPage.js"
 import LoginPage from "./components/LoginPage.js"
 import axios from "axios"
+import {BrowserRouter as Router, Route} from "react-router-dom"
 
 
 class App extends Component {
@@ -87,10 +88,14 @@ class App extends Component {
     }
 
     return(
-      <div className="App">
-        <Navbar goHome={this.goHome} goNew={this.goNewPoll} goLogin={this.goLogin} active={this.state.activePage} user={this.state.user}/>
-        {page}
-      </div>
+      <Router>
+        <div className="App">
+          <Navbar path="/" goHome={this.goHome} goNew={this.goNewPoll} goLogin={this.goLogin} active={this.state.activePage} user={this.state.user}/>
+            <Route exact={true} path="/" component={Frontpage} />
+            <Route path="/poll/:id" component={PollPage}></Route>
+            <Route path="/new" component={NewPollPage}/>
+        </div>
+      </Router>
     )
   }
 }

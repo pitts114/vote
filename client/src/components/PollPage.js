@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PieChart from "./PieChart.js"
 import axios from "axios"
 import Form from "./Form.js"
+import {Link} from "react-router-dom"
 
 class PollPage extends Component {
   constructor(props){
@@ -25,7 +26,8 @@ componentDidMount() {
   }
 
   getPolls() {
-    var pollId = this.props.poll.replace("poll:", "")
+    console.log(this.props)
+    var pollId = this.props.match.params.id
     axios.get("/api/poll/" + pollId).then((response)=>{
       this.setState({
         data: response.data
@@ -49,7 +51,7 @@ componentDidMount() {
           <div className="well">
             <PieChart choices={this.state.data.choices} />
             <Form data={this.state.data} refresh={this.refresh}/>
-            <button onClick={this.props.goHome} className="btn btn-primary"><span className="glyphicon glyphicon-menu-left"></span></button>
+            <Link to="/"><button className="btn btn-primary"><span className="glyphicon glyphicon-menu-left"></span></button></Link>
           </div>
         </div>
       </div>
