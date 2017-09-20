@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PieChart from "./PieChart.js"
+import PieChart from "../components/PieChart.js"
 import axios from "axios"
-import Form from "./Form.js"
+import Form from "../components/Form.js"
 import {Link} from "react-router-dom"
 
 class PollPage extends Component {

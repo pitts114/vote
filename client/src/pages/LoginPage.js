@@ -5,9 +5,7 @@ class LoginPage extends Component {
     return (
       <div className="container Page text-center">
         <h1 className="text-white">Login</h1>
-        <form action="/auth/github">
-          <input className="btn btn-primary" type="submit" value="Login with GitHub" />
-        </form>
+        <a href="/auth/github"><button className="btn btn-primary"><img src="/public/img/github_32px.png" /> Login with GitHub</button></a>
       </div>
     )
   }

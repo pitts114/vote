@@ -1,6 +1,6 @@
 import React, {Component} from "react"
-import Jumbotron from "./Jumbotron.js"
-import FrontpagePolls from "./FrontpagePolls.js"
+import Jumbotron from "../components/Jumbotron.js"
+import FrontpagePolls from "../components/FrontpagePolls.js"
 
 class Frontpage extends Component{
   render(){

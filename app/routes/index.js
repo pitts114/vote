@@ -75,6 +75,7 @@ app.use(express.static(path + '/client/build'))
 app.use("/public/css", express.static(path + '/app/public/css'))
 app.use("/public/js",express.static(path + '/app/public/js'))
 app.use("/public/fonts", express.static(path + '/app/public/fonts'))
+app.use("/public/img", express.static(path + "/app/public/img"))
 
 app.get("*", (req,res)=>{
   res.sendFile(path + "/client/build/index.html")

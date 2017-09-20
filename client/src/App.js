@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from "./components/Navbar.js"
-import Frontpage from "./components/Frontpage.js"
-import PollPage from "./components/PollPage.js"
-import NewPollPage from "./components/NewPollPage.js"
-import LoginPage from "./components/LoginPage.js"
+import Frontpage from "./pages/Frontpage.js"
+import PollPage from "./pages/PollPage.js"
+import NewPollPage from "./pages/NewPollPage.js"
+import LoginPage from "./pages/LoginPage.js"
 import axios from "axios"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
-import NotFound from "./components/NotFound.js"
+import NotFound from "./pages/NotFound.js"
 
 
 class App extends Component {
