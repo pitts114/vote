@@ -61,7 +61,7 @@ class ProfilePage extends Component {
       <div className="container Page">
         <div className="col-xs-12 col-sm-8 col-sm-offset-2">
           <div className="panel panel-default">
-            <div className="panel-heading"><h3 className="text-center">Gitub Profile</h3></div>
+            <div className="panel-heading"><h3>Gitub Profile</h3></div>
             <div className="panel-body">
             {githubProfile(this.state.github)}
             </div>
@@ -80,14 +80,14 @@ function githubProfile(obj){
   if (obj){
     var name = []
     if (obj.displayName){
-      name = <p>{"Display Name: " + obj.displayName}</p>
+      name = <li className="list-group-item">{"Display Name: " + obj.displayName}</li>
     }
     return (
-      <div>
-        <p>{"Username: " + obj.username}</p>
+      <ul className="list-group">
+        <li className="list-group-item">{"Username: " + obj.username}</li>
         {name}
-        <p>{"Public Repositories: " + obj.repos}</p>
-      </div>
+        <li className="list-group-item">{"Public Repositories: " + obj.repos}</li>
+      </ul>
     )
   }
   return <div></div>
