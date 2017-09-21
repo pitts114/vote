@@ -59,14 +59,15 @@ class ProfilePage extends Component {
   render(){
     return (
       <div className="container Page">
-        <h1 className="text-center text-white">Profile</h1>
         <div className="col-xs-12 col-sm-8 col-sm-offset-2">
-          <div className="well text-center">
-            <h2>Gitub Profile</h2>
+          <div className="panel panel-default">
+            <div className="panel-heading"><h3 className="text-center">Gitub Profile</h3></div>
+            <div className="panel-body">
             {githubProfile(this.state.github)}
+            </div>
           </div>
           <div className="panel panel-info">
-            <div className="panel-heading">My Polls</div>
+            <div className="panel-heading"><h4>My Polls</h4></div>
             {this.panelPolls()}
           </div>
         </div>

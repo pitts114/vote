@@ -60,8 +60,10 @@ class NewPollPage extends Component {
               <label className="control-label text-dark">Poll Options (Comma Seperated)</label>
               <input type="textarea" className="form-control" placeholder="Option 1, Option 2, etc." value={this.state.choicesValue} onChange={this.onChoicesChange}/>
             </div>
-            <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
           </form>
+        </div>
+        <div className="panel-footer">
+          <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
         </div>
         </div>
       </div>
