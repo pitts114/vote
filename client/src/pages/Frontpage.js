@@ -9,7 +9,6 @@ class Frontpage extends Component{
     console.log(this.props)
     return(
       <div className="container">
-        <Jumbotron />
         <div className="row">
           <div className="col-xs-12 col-sm-6">
             <RecentPollsPanel />

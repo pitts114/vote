@@ -10,6 +10,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import NotFound from "./pages/NotFound.js"
 import ProfilePage from "./pages/ProfilePage.js"
 import RecentPollsPage from "./pages/RecentPollsPages.js"
+import Jumbotron from "./components/Jumbotron.js"
 
 
 class App extends Component {
@@ -49,6 +50,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route render={(props) => ( <Navbar path={props.location.pathname} user={this.state.user}/> )} />
+          <Route path="/" component={Jumbotron} />
             <Switch>
               <Route exact={true} path="/" component={Frontpage} />
               <Route path="/poll/:id" component={PollPage}></Route>

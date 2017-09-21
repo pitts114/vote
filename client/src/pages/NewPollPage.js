@@ -49,8 +49,9 @@ class NewPollPage extends Component {
   render(){
     return(
       <div className="col-xs-12 col-sm-8 col-sm-offset-2 Page">
-        <h1 className="text-center text-white">Create A New Poll</h1>
-        <div className="well">
+        <div className="panel panel-default">
+          <div className="panel-heading"><h4>Create A New Poll</h4></div>
+          <div className="panel-body">
           <form>
             <div className="form-group">
               <label className="control-label text-dark">Poll Title</label>
@@ -61,6 +62,7 @@ class NewPollPage extends Component {
             </div>
             <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
           </form>
+        </div>
         </div>
       </div>
     )
