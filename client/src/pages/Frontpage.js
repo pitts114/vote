@@ -6,6 +6,7 @@ import NewPollPanel from "../components/NewPollPanel.js"
 
 class Frontpage extends Component{
   render(){
+    console.log(this.props)
     return(
       <div className="container">
         <Jumbotron />
@@ -14,7 +15,7 @@ class Frontpage extends Component{
             <RecentPollsPanel />
           </div>
           <div className="col-xs-12 col-sm-6">
-            <NewPollPanel />
+            <NewPollPanel push={this.props.history.push}/>
           </div>
         </div>
       </div>
