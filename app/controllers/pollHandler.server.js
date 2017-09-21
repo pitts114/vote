@@ -114,14 +114,11 @@ function PollHandler() {
   }
 
   this.pollsByOwner = function(res, owner){
-    Polls.find({"owner":owner}, '_id').exec((err,results)=>{
+    Polls.find({"owner":owner}, '_id title').exec((err,results)=>{
       if (err) throw err
-      var polls = results.map((element)=>{
-        return element["_id"]
-      })
       var obj = {
         owner: owner,
-        polls: polls
+        polls: results
       }
       res.json(obj)
     })
