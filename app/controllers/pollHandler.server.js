@@ -54,9 +54,27 @@ function PollHandler() {
         }
         //console.log(results)
         if (results[0]){
-              res.json(results.filter((val, index, arr)=>{
-                return index < limit
-              }))
+          var obj = {
+            current: "/api/polls?page=" + pageNumber + "&limit=" + limit
+            //previous: "",
+            //current: "",
+            //next: "",
+            //polls
+          }
+          if (pageNumber>0){
+            var page = Number(pageNumber) - 1
+            obj.previous = "/api/polls?page=" + page + "&limit=" + limit
+          }
+          if (limit < results.length){
+            var page = Number(pageNumber) + 1
+            obj.next = "api/polls?page=" + page + "&limit=" + limit
+          }
+          obj.polls = results.filter((val, index, arr)=>{
+            return index < limit
+          })
+
+          res.json(obj)
+
         }
         else{
           res.json({"status":"There are no polls!"})

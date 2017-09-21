@@ -21,8 +21,8 @@ class FrontpagePolls extends Component {
     axios.get("/api/polls?page=0&limit=6").then((response)=>{
       var Polls = []
       var id = 1
-      for (var i = response.data.length-1; i >= 0; i--){
-        Polls.push(poll(response.data[i], id++))
+      for (var i = response.data.polls.length-1; i >= 0; i--){
+        Polls.push(poll(response.data.polls[i], id++))
       }
       this.setState({
         polls: <div className="row">{Polls}</div>
