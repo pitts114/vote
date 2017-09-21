@@ -9,6 +9,7 @@ import axios from "axios"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 import NotFound from "./pages/NotFound.js"
 import ProfilePage from "./pages/ProfilePage.js"
+import RecentPollsPage from "./pages/RecentPollsPages.js"
 
 
 class App extends Component {
@@ -54,6 +55,7 @@ class App extends Component {
               <Route path="/new" component={NewPollPage}/>
               <Route path="/login" component={LoginPage}/>
               <Route path="/profile" component={ProfilePage}/>
+              <Route path="/recent" component={RecentPollsPage}/>
               <Route  component={NotFound}/>
             </Switch>
         </div>

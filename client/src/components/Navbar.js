@@ -9,7 +9,7 @@ class Navbar extends Component {
   }
 
   setActivePage(){
-    var obj = {home: "", new: "", login: "", profile:""}
+    var obj = {home: "", new: "", login: "", profile:"", recent: ""}
     switch (this.props.path){
       case "/":
         obj.home = "active"
@@ -23,6 +23,8 @@ class Navbar extends Component {
       case "/profile":
         obj.profile = "active"
         break
+      case "/recent":
+        obj.recent = "active"
       default:
         break
     }
@@ -49,6 +51,9 @@ class Navbar extends Component {
               </li>
               <li className={activePage.new}>
                 <Link to="/new">New Poll</Link>
+              </li>
+              <li className={activePage.recent}>
+                <Link to="/recent">Recent Polls</Link>
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
