@@ -93,3 +93,10 @@ label {
 .pie {
   max-width: 300px;
 }
+.pager {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.page-btn-left {
+  margin-right: 0px;;
+}

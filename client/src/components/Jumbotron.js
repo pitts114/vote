@@ -10,7 +10,7 @@ class Jumbotron extends Component {
           <button className="btn btn-primary btn-lg">Login</button>
         </div>
         */
-        <div className="jumbotron animated fadeInUp text-center Jumbotron">
+        <div className="jumbotron text-center Jumbotron">
           <h1><b>Vote</b></h1>
           <p>A place to host polls and vote on them.</p>
         </div>
