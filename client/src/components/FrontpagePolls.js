@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import axios from "axios"
-import "./FrontpagePolls.css"
 import PieChart from "./PieChart.js"
 import {Link} from "react-router-dom"
 
