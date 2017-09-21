@@ -23,6 +23,10 @@ module.exports = function(app, express, passport) {
     .get(IsLoggedIn, (req,res)=>{
       res.json(req.user.github)
     })
+  app.route("/api/user/polls")
+    .get(IsLoggedIn, (req,res)=>{
+      pollHandler.pollsByOwner(res,getVoter(req))
+    })
 
   app.route("/auth/github").get(passport.authenticate("github")) //go to github and login
   app.route("/auth/github/callback").get(passport.authenticate("github", {

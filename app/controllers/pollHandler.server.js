@@ -111,7 +111,20 @@ function PollHandler() {
         res.json({"error":"You are not the owner of this poll!"})
       }
     })
+  }
 
+  this.pollsByOwner = function(res, owner){
+    Polls.find({"owner":owner}, '_id').exec((err,results)=>{
+      if (err) throw err
+      var polls = results.map((element)=>{
+        return element["_id"]
+      })
+      var obj = {
+        owner: owner,
+        polls: polls
+      }
+      res.json(obj)
+    })
   }
 
 }
