@@ -31,9 +31,6 @@ class Form extends Component {
           alert("You voted for " + this.state.selected)
         })
     }
-    else{
-      alert("Make a choice first dummy!")
-    }
   }
 
   render(){

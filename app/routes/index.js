@@ -88,7 +88,7 @@ app.get("*", (req,res)=>{
 
 
 function getVoter(req){
-  if (req.session.passport){
+  if (req.session.passport && req.session.passport.user){
     return req.session.passport.user
   }
   else {
