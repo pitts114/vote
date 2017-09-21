@@ -9,8 +9,11 @@ class RecentPollsPanel extends Component{
       page: 0,
       limit: 6,
       polls: [],
-      next: '',
-      prev: ''
+      currentUrl:'/api/polls?page=0&limit=6',
+      nextUrl: undefined,
+      prevUrl: undefined,
+      nextState: 'disabled',
+      prevState:"disabled"
     }
     this.handleNext = this.handleNext.bind(this)
     this.handlePrev = this.handlePrev.bind(this)
@@ -18,33 +21,42 @@ class RecentPollsPanel extends Component{
   }
 
   handleNext(){
-
+    if (this.state.nextUrl)
+      this.makePollItems(this.state.nextUrl)
   }
 
   handlePrev(){
-
+    if (this.state.prevUrl)
+      this.makePollItems(this.state.prevUrl)
   }
 
-  makePollItems(){
-    var route = "/api/polls?page=" + this.state.page.toString() + "&limit=" + this.state.limit.toString()
+  makePollItems(url){
+    var route = url
     axios.get(route).then((response)=>{
       var items = response.data.polls.map((element)=>{
         return(
-          <Link to={"/poll/" + element._id} className="list-group-item">{element.title}</Link>
+          <Link key={element._id} to={"/poll/" + element._id} className="list-group-item">{element.title}</Link>
         )
       })
       const state = this.state
       state.polls = items
-      state.next = response.data.next
-      state.prev = response.data.prev
-      console.log(state.next)
-      console.log(state.prev)
+      state.nextUrl = response.data.next
+      state.prevUrl = response.data.previous
+      state.currentUrl = response.data.currentUrl
+      if (state.nextUrl)
+        state.nextState = ""
+      else
+        state.nextState="disabled"
+      if (state.prevUrl)
+        state.prevState = ""
+      else
+        state.prevState = "disabled"
       this.setState(state)
     })
   }
 
   componentDidMount(){
-    this.makePollItems()
+    this.makePollItems(this.state.currentUrl)
   }
 
 
@@ -60,8 +72,8 @@ class RecentPollsPanel extends Component{
         <div className="panel-footer">
           <nav>
             <ul className="pager">
-              <li><a>Previous</a></li>
-              <li><a>Next</a></li>
+              <li onClick={this.handlePrev} className={this.state.prevState + " previous"}><a><span className="glyphicon glyphicon-chevron-left"></span></a></li>
+              <li onClick={this.handleNext} className={this.state.nextState + " next"}><a><span className="glyphicon glyphicon-chevron-right"></span></a></li>
             </ul>
           </nav>
         </div>
