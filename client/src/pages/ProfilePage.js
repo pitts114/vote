@@ -47,7 +47,7 @@ class ProfilePage extends Component {
   panelPolls(){
     var items = this.state.polls.map((element)=>{
       return (
-        <li className="list-group-item">{element.title}</li>
+        <li className="list-group-item">{element.title}<button onClick={()=>{this.deletePoll(element._id)}} className="delete-btn btn btn-sm btn-danger">Delete</button></li>
       )
     })
 
@@ -67,7 +67,6 @@ class ProfilePage extends Component {
           </div>
           <div className="panel panel-info">
             <div className="panel-heading">My Polls</div>
-            <div className="panel-body">Manage your polls here.</div>
             {this.panelPolls()}
           </div>
         </div>
