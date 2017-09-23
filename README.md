@@ -9,6 +9,10 @@ https://vote-jp.herokuapp.com/
 ```
 PORT=<port>
 MONGO_URI=mongodb://localhost:27017/<database name>
+SESSION_SECRET=<youe secret>
+GITHUB_KEY=<your github app key>
+GITHUB_SECRET=<your github app secret key>
+APP_URL=<your app url (or localhost for development)>
 ```
 1. `npm install`
 1. `cd client && npm install && npm run build`
